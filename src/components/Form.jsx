@@ -1,5 +1,9 @@
 import { Component } from "react";
+import{MyContainer ,MyInput} from "./styledComponents/Styled"
 import Tip from "./Tip";
+
+
+
 class Form extends Component {
   constructor() {
     super();
@@ -11,19 +15,19 @@ class Form extends Component {
       showTip: false
     };
   }
+
   calculateTip = () =>{
     const tip = (this.state.amount * this.state.service) / this.state.howManyPeople
     this.setState({...this.state,tip:tip.toFixed(2),showTip:true})
   }
 
   render() {
-    console.log("im been rerendered");
     return (
-      <div>
+      <MyContainer>
         <h2>Tip Calculator</h2>
         <label htmlFor="amount">How much was your bill ?</label>
         <br />
-        <input
+        <MyInput
           type="number"
           name="amount"
           placeholder="write some amount"
@@ -62,7 +66,7 @@ class Form extends Component {
         </label>
         <br />
 
-        <input
+        <MyInput
           type="number"
           name="numberOfPeople"
           placeholder="0"
@@ -75,7 +79,7 @@ class Form extends Component {
         <button onClick={this.calculateTip}> Calculate</button>
 
         {this.state.tip >0  && <Tip tipAmount={this.state.tip}/>}
-      </div>
+      </MyContainer>
     );
   }
 }
